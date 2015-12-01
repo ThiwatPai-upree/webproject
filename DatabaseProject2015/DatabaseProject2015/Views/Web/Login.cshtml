@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout_Web.cshtml";
+}
+
+<script>
+    function loginUser(form) {
+       
+        var formblock = document.getElementById('login_USER');
+        
+        var ID = formblock.username.value;
+        //alert(ID);
+        var password = encodeURIComponent(formblock.password.value);
+        
+        
+        //alert(password);
+        var messageAlert = '';
+        var container = document.getElementById("dvData");
+        container.innerHTML = '';
+        $.ajax({
+            type: "GET",
+            url: "/Web/loginStudentID?username=" + ID + "&&password=" + password,
+            data: param = "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "html",
+            success: successFunc,
+            error: errorFunc
+        });
+
+        function successFunc(data, status) {
+            setTimeout(function () {
+                $('#loadingAJAX_TableCourse').fadeOut();
+
+            }, 10)
+            container.innerHTML = data;
+            if (container.innerHTML != "True") {
+                messageAlert = container.innerHTML;
+                document.getElementById("dvDataOK").innerHTML = "";
+                document.getElementById("dvDataOK").setAttribute("style", "z-index:1100; display:block; ");
+
+                var elem = document.createElement("img");
+                elem.setAttribute("src", "/images/iconAlert.png");
+                elem.setAttribute("height", "60");
+                elem.setAttribute("width", "60");
+                elem.setAttribute("alt", "Flower");
+                document.getElementById("dvDataOK").appendChild(elem);
+
+
+                document.getElementById("dvDataOK").innerHTML += "<p style='margin-top:15px;'>" + messageAlert + "</p>";
+                document.getElementById("dvDataOK").innerHTML += "<button type='button' class='popupMessageOK' onclick='buttonOK()' style=' float: left; margin-top: -1px; width:100%; margin-top: 10px; border-width:1px; border-style:solid; border-color:#e50000; margin-bottom:0px;'>OK</button>";
+            }
+            else {
+                if (ID.toUpperCase() == "ADMIN") {
+                    document.location.href = "/Admin/ItemsIndex";
+                }
+                else if (ID.toUpperCase() == "OWNER") {
+                    document.location.href = "/Manager/Index";
+                }
+                else {
+                    document.location.href = "/Web/Index";
+                }
+                
+                //document.location.href = "/Web/RegisterPlanner";
+            }
+        }
+
+        function errorFunc() {
+            //alert('error');
+        }
+    }
+</script>
+
+<div class="box_all_web">
+    <div class="topic_login">Login or Create an Account</div>
+    <div class="box_register">
+        <form id="login_USER" name="login_USER" onsubmit="loginUser(this.form); return false;" style="float:left;">
+            <div style="width:440px; float:left; overflow:auto; height:auto; margin-right:40px;">
+                <div class="topic_text_login">New Customers</div>
+                <div class="detail_textlogin">By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</div>
+
+            </div>
+
+            <div style="width:440px; float:left; overflow:auto; height:auto; padding:0px 0px 5px 0px;">
+                <div class="topic_text_login">Registered Customers</div>
+                <div class="detail_textlogin">If you have an account with us, please log in.</div>
+
+                <div class="topic_nameForm">Email Address</div>
+                <input id="username" class="textbox_web" style="width:415px;" />
+                <div class="topic_nameForm">Password</div>
+                <input id="password" class="textbox_web" type="password" style="width:415px;" />
+
+            </div>
+            <div style="width:100%; float:left; margin-top:30px;">
+                <div style="width:440px; float:left; overflow:auto; height:auto; margin-right:40px;">
+                    <div><a href="/Web/Register" class="button_web">Create an Account</a></div>
+                </div>
+                <div style="width:440px; float:left; overflow:auto; height:auto;">
+                    <input class="button_web" type="button" value="Login" onclick="loginUser()" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

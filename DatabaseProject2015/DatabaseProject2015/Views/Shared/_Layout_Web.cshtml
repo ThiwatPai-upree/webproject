@@ -1,0 +1,425 @@
+﻿
+@{
+    Layout = null;
+}
+<script>
+    function itemAddToCart(itemID,itemName) {
+
+        var messagePreregister = "";
+        //alert(coursePreRegist);
+        $.ajax({
+            type: "GET",
+            url: "/Web/add_ItemToCart?itemID=" + itemID,
+            data: param = "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "Text",
+            success: successFunc,
+            error: errorFunc
+        });
+
+        function successFunc(data, status) {
+            popupAddItemCart(itemName,'correct')
+            container.innerHTML = data;
+        }
+
+        function errorFunc() {
+            //alert('error');
+        }
+
+    }
+
+    function logout() {
+        $.ajax({
+            type: "GET",
+            url: "/Web/Logout",
+            data: param = "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "Text",
+            success: successFunc,
+            error: errorFunc
+        });
+
+        function successFunc(data, status) {
+            window.location.href = '/Web/Index';
+            container.innerHTML = data;
+            
+        }
+
+        function errorFunc() {
+            //alert('error');
+        }
+    }
+
+    function popupAddItemCart(itemName, order) {
+        document.getElementById("dvData").innerHTML = "";
+
+        document.getElementById("dvData").setAttribute("style", "z-index:1100; display:block;");
+
+        if (order == "correct") {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", "/images/iconCorrect.png");
+            elem.setAttribute("height", "60");
+            elem.setAttribute("width", "60");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("dvData").appendChild(elem);
+        }
+        else {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", "/images/iconAlert.png");
+            elem.setAttribute("height", "60");
+            elem.setAttribute("width", "60");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("dvData").appendChild(elem);
+        }
+
+
+        document.getElementById("dvData").innerHTML += "<p style='margin-top:15px;'>Add " + itemName + " to cart</p>";
+        // document.getElementById("dvData").innerHTML += "<button type='button' class='menuBackandConfirm' onclick='SetCheckBoxConstraints()' style='float: left; margin-top: -1px; width: 335px; margin-top: 10px; border-width:1px; border-style:solid; border-color:#e50000; margin-bottom:0px;'>Save</button>";
+        setTimeout(function () {
+            $('#dvData').fadeOut();
+
+        }, 1500)
+    };
+
+    function popupMessage(message, order) {
+        document.getElementById("dvData").innerHTML = "";
+
+        document.getElementById("dvData").setAttribute("style", "z-index:1100; display:block;");
+
+        if (order == "correct") {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", "/images/iconCorrect.png");
+            elem.setAttribute("height", "60");
+            elem.setAttribute("width", "60");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("dvData").appendChild(elem);
+        }
+        else {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", "/images/iconAlert.png");
+            elem.setAttribute("height", "60");
+            elem.setAttribute("width", "60");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("dvData").appendChild(elem);
+        }
+
+
+        document.getElementById("dvData").innerHTML += "<p style='margin-top:15px;'>" + message + "</p>";
+        // document.getElementById("dvData").innerHTML += "<button type='button' class='menuBackandConfirm' onclick='SetCheckBoxConstraints()' style='float: left; margin-top: -1px; width: 335px; margin-top: 10px; border-width:1px; border-style:solid; border-color:#e50000; margin-bottom:0px;'>Save</button>";
+        setTimeout(function () {
+            $('#dvData').fadeOut();
+
+        }, 1500)
+    };
+
+    function popupMessageOK(message, order) {
+        document.getElementById("dvDataOK").innerHTML = "";
+
+        document.getElementById("dvDataOK").setAttribute("style", "z-index:1100; display:block;");
+
+        if (order == "correct") {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", "/images/iconCorrect.png");
+            elem.setAttribute("height", "60");
+            elem.setAttribute("width", "60");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("dvDataOK").appendChild(elem);
+        }
+        else {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", "/images/iconAlert.png");
+            elem.setAttribute("height", "60");
+            elem.setAttribute("width", "60");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("dvDataOK").appendChild(elem);
+        }
+
+
+        document.getElementById("dvDataOK").innerHTML += "<p style='margin-top:15px;'>" + message + "</p>";
+        document.getElementById("dvDataOK").innerHTML += "<button type='button' class='popupMessageOK' onclick='buttonOK()' style=' float: left; margin-top: -1px; width:100%; margin-top: 10px; border-width:1px; border-style:solid; border-color:#e50000; margin-bottom:0px;'>OK</button>";
+
+    };
+
+    function popupMessageConfirm(message, order, nameFunction, courseCode) {
+        OptionConfirmName = nameFunction;
+        courseCodeConfirm = courseCode;
+        document.getElementById("dvDataConfirom").innerHTML = "";
+        //alert(nameFunction);
+
+        document.getElementById("dvDataConfirom").setAttribute("style", "z-index:1100; display:block; min-width:300px; overflow:auto;");
+        if (OptionConfirmName == "ButtonDelete") {
+            document.getElementById("dvDataConfirom").innerHTML += "<p style='width:100%;  padding:0px 0px 8px 0px; text-align:center; font-weight:bold; border-bottom-color: #eeeeee; border-bottom-style: solid; border-bottom-width: 1px; font-weight:500;'>" + "Confirm to delete this course" + "</p>";
+        }
+        else if (OptionConfirmName == "ButtonLikePlan" || OptionConfirmName == "UnSaveGetDetailOfPlan") {
+            //document.getElementById("dvDataConfirom").innerHTML += "<p style=' width:100%;  padding:0px 0px 8px 0px; text-align:center; font-weight:bold; border-bottom-color: #eeeeee; border-bottom-style: solid; border-bottom-width: 1px; font-weight:500;'>" + "Confirm to remove this schedule" + "</p>";
+        }
+        else if (OptionConfirmName == "PreRegister") {
+            //document.getElementById("dvDataConfirom").innerHTML += "<p style=' width:100%;  padding:0px 0px 8px 0px; text-align:center; font-weight:bold; border-bottom-color: #eeeeee; border-bottom-style: solid; border-bottom-width: 1px; font-weight:500;'>" + "Confirm to register this schedule" + "</p>";
+        }
+
+
+        if (order == "correct") {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", "/images/iconCorrect.png");
+            elem.setAttribute("height", "60");
+            elem.setAttribute("width", "60");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("dvDataConfirom").appendChild(elem);
+        }
+        if (order == "question") {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", "/images/iconQuestion.png");
+            elem.setAttribute("height", "60");
+            elem.setAttribute("width", "60");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("dvDataConfirom").appendChild(elem);
+        }
+        else {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", "/images/iconAlert.png");
+            elem.setAttribute("height", "60");
+            elem.setAttribute("width", "60");
+            elem.setAttribute("alt", "Flower");
+            document.getElementById("dvDataConfirom").appendChild(elem);
+        }
+
+
+        document.getElementById("dvDataConfirom").innerHTML += "<p style='margin-top:15px;'>" + message + "</p>";
+        document.getElementById("dvDataConfirom").innerHTML += "<button type='button' class='popupMessageOK' onclick='OptionConfirm()' style=' float: left; margin-top: -1px; width:48%; margin-right:2%; margin-top: 10px; border-width:1px; border-style:solid; border-color:#e50000; margin-bottom:0px;'>OK</button>";
+        document.getElementById("dvDataConfirom").innerHTML += "<button type='button' class='popupMessageOK_cancel' onclick='OptionCancel()' style=' float: left; margin-top: -1px; width:48%; margin-top: 10px; border-width:1px; border-style:solid; border-color:#656565; margin-bottom:0px;'>Cancel</button>";
+
+    };
+
+    function buttonOK() {
+        setTimeout(function () {
+            $('#dvDataOK').fadeOut();
+
+        }, 0)
+    }
+
+    function searchProduct() {
+      
+        var textBox_Search = document.getElementById("textBox_Search").value;
+        var selectType = document.getElementById("selectType").value;
+
+
+        window.location.href = '/Web/ProductList?type=' + selectType + '&valueQuery='+ textBox_Search + '';
+
+        //var messagePreregister = "";
+        //$.ajax({
+        //    type: "GET",
+        //    url: "/Web/searchProduct?type=" + selectType + "&valueQuery="+ textBox_Search,
+        //    data: param = "",
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "Text",
+        //    success: successFunc,
+        //    error: errorFunc
+        //});
+
+        //function successFunc(data, status) {
+        //    container.innerHTML = data;
+        //}
+
+        //function errorFunc() {
+        //    //alert('error');
+        //}
+    }
+
+</script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="~/Scripts/js/functionDesign.js"></script>
+    <script src="~/Scripts/js/jssor.slider.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Web.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="float:left; padding:12px 0px 12px 0px; height:45px; z-index:1000;">
+        <div class="collapse navbar-collapse" style="width:955px; margin:5px auto; ">
+            <div class="navbar-header">
+                <span><a href="/Web/Index" style="color:#fff; text-decoration:none; ">Game House</a></span>
+            </div>
+            <ul class="nav navbar-nav navbar-left">
+                <input id="textBox_Search" class="searchText_banner" placeholder="Search..." />
+                <div  class="select-style">
+                    <select id="selectType">
+                        <option value="1">Name Product</option>
+                        <option value="2">Company Name</option>
+                        <option value="3">Genre Name</option>
+                        <option value="4">Platform Name</option>
+                    </select>
+                </div>
+                <div class="searchImage" onclick="searchProduct()" style="cursor:pointer;">
+                    <i class="fa fa-search" style="height:21px; color:#fff;"> </i>
+                </div>
+                @*<input type="text" style="color:#343434; background-color:#fff; padding:5px 8px 5px 8px; border-radius:5px 0px 0px 5px; border:none; float:left;"></input>
+                    <div style="float:left; cursor:pointer; margin-left:0px; padding:5px 8px 4px 8px; background-color:#fff; border-radius:0px 5px 5px 0px;"><img src="~/Images/search_filled-75.png" style="height:17px;" /></div>*@
+            </ul>
+            <ul class="nav navbar-nav navbar-right" style="margin-top:7px;">
+                <li><a href="/Web/ShoppingCartList"><i class="fa fa-shopping-cart" style="font-size:25px; float:left; margin-top:-3px;"></i></a></li>
+                
+                @if (Convert.ToBoolean(ViewData["statusLoginWeb"]) == true)
+                {
+                    <li class="dropdown" style="background-color:#006fa4; border-radius:5px;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="background-color:transparent;">@Convert.ToString(ViewData["Name"])<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Web/profile">Edit profile</a></li>
+                            <li><a href="/Web/orderHistory">Order hitory</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li><a href="/Web/Login" class="button_login_menuBar">Login</a></li>
+                }
+
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="float:left; margin-top:69px; padding:8px 0px 8px 0px; height:20px;background:none;  background-color:#006fa4; z-index:900;">
+        <div class="containers" style="margin: 0px auto; width: 955px; background-color:#fff;">
+            <div id="menu">
+                <ul class="nav navbar-nav" style=" margin-right: 0px; background-color:transparent;">
+                    <li>
+                        <a href="/Web/Index" style="padding:0px 0px 0px 0px;">
+                            <span class="box_button_link_menu " style="width:50px;">
+                                <span style="margin-top: -3px; float: left; text-align: center; padding:2px 13px 2px 13px; border-radius:3px 3px 0px 0px;">Home</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="dropdown" style="background-color:#006fa4;  margin-top:-3px;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="background-color:transparent;">Company <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Web/ProductList?type=2&valueQuery=Bandai">Bandai Namco Games</a></li>
+                            <li><a href="/Web/ProductList?type=2&valueQuery=Nintendo">Nintendo</a></li>
+                            <li><a href="/Web/ProductList?type=2&valueQuery=Sega">Sega</a></li>
+                            <li><a href="/Web/ProductList?type=2&valueQuery=Ubisoft">Ubisoft</a></li>
+                            <li><a href="/Web/ProductList?type=2&valueQuery=Koei">Koei Tecmo</a></li>
+                            <li><a href="/Web/ProductList?type=2&valueQuery=Capcom">Capcom</a></li>
+                            <li><a href="/Web/ProductList?type=2&valueQuery=Telltable">Telltable Games</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" style="background-color:#006fa4;  margin-top:-3px;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="background-color:transparent;">Platform <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Web/ProductList?type=3&valueQuery=Wii">Wii U</a></li>
+                            <li><a href="/Web/ProductList?type=3&valueQuery=Nintendo">Nintendo 3DS</a></li>
+                            <li><a href="/Web/ProductList?type=3&valueQuery=PlayStation Vita">PlayStation Vita</a></li>
+                            <li><a href="/Web/ProductList?type=3&valueQuery=PlayStation 4">PlayStation 4</a></li>
+                            <li><a href="/Web/ProductList?type=3&valueQuery=Xbox">Xbox 360</a></li>
+                            <li><a href="/Web/ProductList?type=3&valueQuery=PlayStation 3">PlayStation 3</a></li>
+                            <li><a href="/Web/ProductList?type=3&valueQuery=Microsoft">Microsoft Windows</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" style="background-color:#006fa4;  margin-top:-3px;">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="background-color:transparent;">Genre <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/Web/ProductList?type=4&valueQuery=Platformer">Platformer</a></li>
+                            <li><a href="/Web/ProductList?type=4&valueQuery=Action-adventure">Action-adventure</a></li>
+                            <li><a href="/Web/ProductList?type=4&valueQuery=Visual">Visual novel</a></li>
+                            <li><a href="/Web/ProductList?type=4&valueQuery=First4">First-person shooter</a></li>
+                            <li><a href="/Web/ProductList?type=4&valueQuery=Fighting">Fighting</a></li>
+                            <li><a href="/Web/ProductList?type=4&valueQuery=Hack">Hack and slash</a></li>
+                            <li><a href="/Web/ProductList?type=4&valueQuery=Action">Action</a></li>
+                            <li><a href="/Web/ProductList?type=4&valueQuery=Action role-playing">Action role-playing</a></li>
+                            <li><a href="/Web/ProductList?type=4&valueQuery=Graphich">Graphich adventure</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="/Web/HowToBuy" style="padding:0px 0px 0px 0px;">
+                            <span class="box_button_link_menu " style="width:50px;">
+                                <span style="margin-top: -3px; float: left; text-align: center; padding:2px 13px 2px 13px; border-radius:3px 3px 0px 0px;">How to buy</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Web/ContactUs" style="padding:0px 0px 0px 0px;">
+                            <span class="box_button_link_menu " style="width:50px;">
+                                <span style="margin-top: -3px; float: left; text-align: center; padding:2px 13px 2px 13px; border-radius:3px 3px 0px 0px;">Contact</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="float:left; width:100%; height:20px; "></div>
+    <div id="dvData" class="popUp_messageStatus"></div>
+    <div id="dvDataOK" class="popUp_messageStatus"></div>
+    <div id="dvDataConfirom" class="popUp_messageStatus"></div>
+    @RenderBody()
+    <div class="box_footer" style="background-color:#fff;"></div>
+
+    <div class="scroll-to-top">
+
+        <img src="~/images/arrowUp.png" style="height: 35px; margin-top:0px;" />
+        <!-- <p>Scroll to top</p> *Use this as a text option, instead of the image icon.*-->
+    </div>
+
+    @**** Sign in ****@
+
+
+    <div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:500px; margin:0px auto;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal">
+                        <div style="width:100%; float:left; overflow:auto; height:auto; padding:20px 0px 20px 0px;">
+                            <div class="FormModal_topic" style="">
+                                Username
+                            </div>
+                            <input type="text" class="form-control FormModal_input" id="inputEmail3" placeholder="Username" style="">
+                            <div class="FormModal_topic" style="">
+                                Password
+                            </div>
+                            <input type="password" class="form-control FormModal_input" id="inputEmail3" placeholder="Password" style="">
+                        </div>
+
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>

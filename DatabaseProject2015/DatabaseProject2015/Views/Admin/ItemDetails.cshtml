@@ -1,0 +1,113 @@
+﻿@model DatabaseProject2015.Models.Item
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <title>ItemDetails</title>
+    <style>
+        input {
+            border-radius: 5px;
+            border: 1px solid #bdc3c7;
+            box-shadow: none;
+        }
+
+        textarea {
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Game's House</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("ItemsIndex","Admin")">Products</a></li>
+                        <li><a href="#">Orders</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="row" style="margin-left:20px">
+            <h3>@Html.DisplayFor(model => model.Name)</h3>
+            <div class="col-md-3" style="padding:20px">
+                <img style="width: 280px" class="thumbnail" src="@Url.Content(@Model.ImageProfile)" />
+            </div>
+            <div class="col-md-8" style="padding:20px">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Genre</label>
+                        <div class="col-sm-5">
+                            <input readonly class="form-control" type="text" value="@Html.DisplayFor(model => model.Genre)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Company</label>
+                        <div class="col-sm-5">
+                            <input readonly class="form-control" type="text" value="@Html.DisplayFor(model => model.CompanyName)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Platform</label>
+                        <div class="col-sm-5">
+                            <input readonly class="form-control" type="text" value="@Html.DisplayFor(model => model.Platform)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Rating</label>
+                        <div class="col-sm-5">
+                            <input readonly class="form-control" type="text" value="@Html.DisplayFor(model => model.Rating)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Cost</label>
+                        <div class="col-sm-5">
+                            <input readonly class="form-control" type="text" value="@Html.DisplayFor(model => model.Cost)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Selling Price</label>
+                        <div class="col-sm-5">
+                            <input readonly class="form-control" type="text" value="@Html.DisplayFor(model => model.SellingPrice)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Quantity</label>
+                        <div class="col-sm-5">
+                            <input readonly class="form-control" type="text" value="@Html.DisplayFor(model => model.Quantity)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-5">
+                            <textarea style="max-width:400px; min-height:200px" readonly class="form-control">@Html.DisplayFor(model => model.Description)</textarea>
+                        </div>
+                    </div>
+                </form>
+                <a href="@Url.Action("EditItem","Admin", new { id = Model.ItemID })" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                <a href="@Url.Action("ItemsIndex","Admin")" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Go Back</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 11.25" name="OnlineShoppingDataClasses">
+  <DataContextMoniker Name="/OnlineShoppingDataClassesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="849a84cf-adbe-4ec0-b989-d4d97ca296ed" absoluteBounds="0.75, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/company" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c11c67c9-1d2c-4d0b-8a5f-0fc97c725c09" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0f5331d3-0b93-4727-83a2-7418ebb56cdd" absoluteBounds="0.75, 2.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/user" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2c2007cd-cbe1-49ba-bceb-da565123fc30" absoluteBounds="0.765, 3.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="864bdf5b-08c5-400d-81da-332137b8aceb" absoluteBounds="3.75, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/deliverymethod" />
+      <nestedChildShapes>
+        <elementListCompartment Id="15c9b67d-436d-4657-89f9-9791ce1272e6" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="edb8b112-7c38-46bc-a231-5703a586dab1" absoluteBounds="3.75, 3.75, 2, 1.193992513020834">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/genre" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5de3d10a-97d9-4309-8fcb-2c6661ff02e2" absoluteBounds="3.765, 4.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9987c476-d113-478f-9240-e5ca5e6fc696" absoluteBounds="3.75, 5.75, 2, 2.9247054036458326">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/item" />
+      <nestedChildShapes>
+        <elementListCompartment Id="17dab0ce-6137-4004-9f7c-5242d64df4fa" absoluteBounds="3.765, 6.21, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5db860dc-78b1-48a5-920d-5f569ed3cf04" absoluteBounds="6.75, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/itemgenre" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d7f1bcb8-f41d-46ff-8f99-002e0ad1f804" absoluteBounds="6.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d872f52f-a3c7-4ca0-9d71-9d81a36b4c82" absoluteBounds="6.75, 2.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/itemorder" />
+      <nestedChildShapes>
+        <elementListCompartment Id="27864a78-8d1b-4e1f-8dbc-72f6e56759a3" absoluteBounds="6.765, 3.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cf250d8f-4543-4a8c-81ef-539f9ddc2311" absoluteBounds="6.75, 5.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a71d8816-f0f9-495f-8fdf-c1a13f053f4d" absoluteBounds="6.765, 6.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7c0a941d-53f8-4c4a-a0ea-b64e59e4f542" absoluteBounds="6.75, 8.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/orderstatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="725d3bd9-c620-4160-a7b7-f8236f8289a4" absoluteBounds="6.765, 9.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="69356b70-8df5-471e-a3f0-0ff47f6b5feb" absoluteBounds="9.75, 0.75, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/picture" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3dd7456f-e170-4d4f-96a0-a457d988627e" absoluteBounds="9.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="894073c1-2d97-4efd-89c6-44462b5f8a41" absoluteBounds="0.75, 9.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/platform" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e6c044f6-b153-4a03-88e0-cfaf58595824" absoluteBounds="0.765, 10.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="197ee656-cd0a-4ab4-8939-3ef56dbb0b61" absoluteBounds="9.75, 3.75, 2, 1.193992513020834">
+      <DataClassMoniker Name="/OnlineShoppingDataClassesDataContext/rating" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e5a8bc6-9bb9-4bbb-bb19-1114238c7922" absoluteBounds="9.765, 4.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

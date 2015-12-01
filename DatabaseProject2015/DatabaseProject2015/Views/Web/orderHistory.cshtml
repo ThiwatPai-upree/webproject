@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "orderHistory";
+    Layout = "~/Views/Shared/_layout_Web.cshtml";
+}
+<div class="box_all_web">
+    <div class="topic_login">Order history</div>
+    <div class="box_register">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>OrderID</th>
+                    <th>Order Status</th>
+                    <th>Delivery Method</th>
+                    <th>Date Added</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewData["orderHistory"] as List<DatabaseProject2015.Models.Order>)
+            {
+                    <tr>
+                        <td>@item.OrderID</td>
+                        <td>@item.OrderStatus</td>
+                        <td>@item.DeliveryMethod</td>
+                        <td>@item.DateAdded</td>
+                        <td>@item.Total</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_Layout_Web.cshtml";
+}
+
+
+<div class="box_all_web">
+    <div class="box_ProductDetail">
+        <div class="box_gallryImage_ProductDetail">
+            <img class="imageLarge_ProductDetail" src="@Url.Content(@Model.ImageProfile)"/>
+            @*<div class="imageLarge_ProductDetail"></div>
+            <div class="imageSmall_ProductDetail"></div>
+            <div class="imageSmall_ProductDetail"></div>*@
+        </div>
+        <div class="box_Topic_ProductDetail">
+            <div class="name_Product_ProductDetail">@Model.Name</div>
+            <div class="type_Product_ProductDetail">@Model.CompanyName</div>
+            <div class="type_Product_ProductDetail">@Model.Genre</div>
+        </div>
+        <div class="box_Price_ProductDetail">
+            <div class="price_Product_ProductDetail">@Model.Cost</div>
+            <div class="AddCart_Product_ProductDetail" onclick="itemAddToCart(@Url.Content(@Model.ItemID+""),'@Model.Name')"><i class="fa fa-shopping-cart" style="font-size:16px; float:left; margin-right:7px; margin-top:-2px;"></i> Add To Cart</div>
+        </div>
+    </div>
+    <div class="box_ProductDetail" style="margin-top:10px;">
+        <div class="topic_Description">DESCRIPTION</div>
+        <div class="detail_Description">@Model.Description
+        </div>
+    </div>
+</div>

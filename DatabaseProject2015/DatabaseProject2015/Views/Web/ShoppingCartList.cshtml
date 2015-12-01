@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "ShoppingCartList";
+    Layout = "~/Views/Shared/_Layout_Web.cshtml";
+}
+
+<script>
+    function confirmToShopping() {
+        //alert("111");
+        var productCost = document.getElementById("productCost").innerHTML;
+        var serviceCost = document.getElementById("serviceCost").selectedIndex;
+        var totalCost = document.getElementById("totalCost").innerHTML;
+        //alert(serviceCost);
+
+        window.location.href = '/Web/ShoppingCartEnd?deliveryMethodID='+ (serviceCost + 1) + '&totalCost=' + totalCost;
+
+        //$.ajax({
+        //    type: "GET",
+        //    url: "/Web/ShoppingCartEnd?deliveryMethodID=" + (serviceCost + 1) + "&totalCost=" + totalCost,
+        //    data: param = "",
+        //    contentType: "application/json; charset=utf-8",
+        //    dataType: "Text",
+        //    success: successFunc,
+        //    error: errorFunc
+        //});
+
+        //function successFunc(data, status) {
+        //    container.innerHTML = data;
+        //}
+
+        //function errorFunc() {
+        //    //alert('error');
+        //}
+    }
+
+    function selectServiceCost() {
+        var productCost = document.getElementById("productCost").innerHTML;
+        var serviceCost = document.getElementById("serviceCost").value;
+
+        document.getElementById("totalCost").innerHTML = (parseInt(productCost) + parseInt(serviceCost));
+    }
+
+    function deleteProductList() {
+
+    }
+
+    function start() {
+        var productCost = document.getElementById("productCost").innerHTML;
+        var serviceCost = document.getElementById("serviceCost").value;
+
+        document.getElementById("totalCost").innerHTML = (parseInt(productCost) + parseInt(serviceCost));
+    }
+
+    window.onload = start;
+</script>
+
+<div class="box_all_web">
+    <div class="topic_login">Shopping Cart</div>
+    <div class="box_CartList">
+        <table class="table_cartList">
+            <thead>
+                <tr>
+                    <th class="th_cartList" style="width:50px;">
+                        Action
+                    </th>
+                    <th class="th_cartList" style="width:80px;">
+                        Image
+                    </th>
+                    <th class="th_cartList" style="width:130px;">
+                        Product Name
+                    </th>
+                    <th class="th_cartList" style="width:80px;">
+                        Unit Price
+                    </th>
+                    <th class="th_cartList" style="width:60px;">
+                        Qty
+                    </th>
+                    <th class="th_cartList" style="width:100px; text-align:center;">
+                        Subtotal
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewData["itemCartList"] as List<DatabaseProject2015.Models.Item>)
+                {
+                    <tr class="tr_cartList">
+                        <td class="td_cartList" style="width:50px; color:#0088cc; cursor:pointer;">
+                            <i class="fa fa-times"></i>
+                        </td>
+                        <td class="td_image_cartList" style="width:100px;">
+                            <img src="@Url.Content(@item.ImageProfile)" style="width:60px; height:60px;" />
+                        </td>
+                        <td class="td_cartList" style="width:130px; color:#0088cc;">
+                            @item.Name
+                        </td>
+                        <td class="td_cartList" style="width:80px;">
+                            @item.Cost
+                        </td>
+                        <td class="td_cartList" style="width:60px;">
+                            @item.Quantity
+                        </td>
+                        <td class="td_cartList" style="width:100px; text-align:center; color:#0088cc;">
+                            @item.Rating
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+
+
+        </table>
+        <div class="button_web_ok" style=" float:right; margin-top:20px;">Clear Shopping Cart</div>
+    </div>
+    <div class="box_CartCostTotal">
+        <div class="text_Topic_CartCostTotal">CART TOTALS</div>
+
+        <div class="text_gray" style="min-width:70px;">Subtotal</div>
+        <div id="productCost" class="text_dark" style="float:right; width:110px; text-align:right; margin-bottom:5px;">@Model.FirstName</div>
+        <div class="text_gray" style="min-width:70px; float:left; ">Shopping</div>
+        <label>
+            <select id="serviceCost" style="width:100px; float:right; font-size:13px;" onchange="selectServiceCost()">
+                @foreach (var item in ViewData["deliverymethodList"] as List<DatabaseProject2015.Models.DeliveryMethod>)
+                {
+                    <option name="@item.deliverymethodID" value="@item.fee">@item.deliverymethodname-@item.fee</option>
+                }
+
+            </select>
+        </label>
+        @*<div id="serviceCost" class="text_dark" style="float:right;">$5.00</div>*@
+        <div class="hr_line"></div>
+        <div class="text_gray" style="font-size:15px;">Grand Total</div>
+        <div id="totalCost" class="text_dark" style="float:right; font-size:15px;">0</div>
+        <div class="button_web" style="width:176px; float:left; margin-top:20px;" onclick="confirmToShopping()">Place Order Now</div>
+
+    </div>
+</div>

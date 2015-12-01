@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "ProductList";
+    Layout = "~/Views/Shared/_Layout_Web.cshtml";
+}
+
+<script>
+    function selectSortBy() {
+        var selectNumber = document.getElementById("selectSortBy").value;
+        var list = document.getElementById("box_productList");
+        var divlist = list.getElementsByClassName("box_product");
+        //alert("111");
+        if (selectNumber == 1) { // Date Added
+            for (var i = 0 ; i < divlist.length ; i++) {
+                var div_i = divlist[i];
+               
+                var data_div_i = div_i.getElementsByClassName("DateAdded")[0].innerHTML;
+                data_div_i = data_div_i.split(' ')[0];
+                //alert(data_div_i);
+                //alert(parseInt(data_div_i.replace(/-/g, ""), 10));
+                for (var j = 0 ; j < divlist.length; j++) {
+                    var div_j = divlist[j]; 
+                    var data_div_j = div_j.getElementsByClassName("DateAdded")[0].innerHTML;
+                    data_div_j = data_div_j.split(' ')[0];
+                    
+                    if (parseInt(data_div_i.replace(/-/g, ""), 10) < parseInt(data_div_j.replace(/-/g, ""), 10)) {
+                        var temp = divlist[i].innerHTML;
+                        divlist[i].innerHTML = divlist[j].innerHTML;
+                        divlist[j].innerHTML = temp;
+                    }
+                }
+                
+            }
+        }
+        else if (selectNumber == 2) { // A-Z
+            for (var i = 0 ; i < divlist.length ; i++) {
+                var div_i = divlist[i];
+                
+                var data_div_i = div_i.getElementsByClassName("name_Product_List")[0].innerHTML;
+                //alert(data_div_i);
+                for (var j = 0 ; j < divlist.length; j++) {
+                    var div_j = divlist[j];
+                    var data_div_j = div_j.getElementsByClassName("name_Product_List")[0].innerHTML;
+
+                    if (data_div_i < data_div_j) {
+                        var temp = divlist[i].innerHTML;
+                        divlist[i].innerHTML = divlist[j].innerHTML;
+                        divlist[j].innerHTML = temp;
+                    }
+                }
+
+            }
+        }
+        else if (selectNumber == 3) { // Price
+            for (var i = 0 ; i < divlist.length ; i++) {
+                var div_i = divlist[i];
+                var data_div_i = div_i.getElementsByClassName("price_Product_List")[0].innerHTML;
+                //alert(data_div_i);
+                for (var j = 0 ; j < divlist.length; j++) {
+                    var div_j = divlist[j];
+                    var data_div_j = div_j.getElementsByClassName("price_Product_List")[0].innerHTML;
+
+                    if (data_div_i < data_div_j) {
+                        var temp = divlist[i].innerHTML;
+                        divlist[i].innerHTML = divlist[j].innerHTML;
+                        divlist[j].innerHTML = temp;
+                    }
+                }
+            }
+        }
+        //alert(divlist.length);
+        var newString = "";
+        for (var i = 0 ; i < divlist.length ; i++) {
+            newString = newString + "<div class='box_product'>";
+            newString = newString + divlist[i].innerHTML;
+            newString = newString + "</div>";
+        }
+        //alert(newString);
+        document.getElementById("box_productList").innerHTML = newString;
+    }
+</script>
+
+
+<div class="box_all_web">
+    <div class="box_layer_2" style="width:230px; margin-right:10px;">
+        <div class="box_constraint_List">
+            <div class="text_topic_constraint_List">Company</div>
+            <div class="text_detail_constraint_List">
+
+
+                    @foreach (var item in ViewData["CompanyList"] as List<DatabaseProject2015.Models.Company>)
+                    {
+                        <input type="checkbox" value="555" />@item.companyname<br />
+                    }
+          
+            </div>
+        </div>
+
+        <div class="box_constraint_List">
+            <div class="text_topic_constraint_List">Type of game player</div>
+            <div class="text_detail_constraint_List">
+             
+                    @foreach (var item in ViewData["PlatformList"] as List<DatabaseProject2015.Models.Platform>)
+
+                    {
+                        <input type="checkbox" value="555" />@item.platformname<br />
+                    }
+    
+
+            </div>
+        </div>
+
+        <div class="box_constraint_List">
+            <div class="text_topic_constraint_List">Type of game</div>
+            <div class="text_detail_constraint_List">
+
+                    @foreach (var item in ViewData["GenreList"] as List<DatabaseProject2015.Models.Genre>)
+
+                    {
+                        <input type="checkbox" value="555" />@item.genrename<br />
+                    }
+            </div>
+        </div>
+    </div>
+    <div class="box_layer_8" style="margin-top:0px; width:715px;">
+        <div class="box_filler_Product">
+            <div class="topic_filler_Product">
+                NAME TYPE
+            </div>
+            <div class="Box_dropdownList_filler_Product">
+                Sort by
+                <label>
+                    <select id="selectSortBy" style="width:100px;" onchange="selectSortBy()">
+                        <option value="1" selected >Date Added</option>
+                        <option value="2" > A-Z </option>
+                        <option value="3">Price</option>
+                        
+                        
+                    </select>
+                </label>
+
+            </div>
+        </div>
+        <div id="box_productList">
+            @foreach (var item in ViewData["ProductList"] as List<DatabaseProject2015.Models.Item>)
+            {
+                
+                    <div class="box_product">
+                        <div class="boxBorderProduct_List">
+                            <a href="/Web/ProductDetail?id=@Url.Content(@item.ItemID+" ")" >
+                                <img class="image_Product_List" src="@Url.Content(@item.ImageProfile)" />
+                                <div class="name_Product_List">@item.Name</div>
+                                <div class="type_Product_List">@item.Genre</div>
+                                <div class="price_Product_List">@item.Cost</div>
+                            </a>
+                            <div class="AddCart_Product_List" onclick="itemAddToCart(@Url.Content(@item.ItemID+""),'@item.Name')"><i class="fa fa-shopping-cart" style="font-size:15px; float:left; margin-right:5px;" ></i> Add To Cart</div>
+                            <div class="DateAdded" style="position:absolute; z-index:-1;">@item.DateModified</div>
+                        </div>
+                    </div>
+            }
+    </div>
+</div>
+</div>

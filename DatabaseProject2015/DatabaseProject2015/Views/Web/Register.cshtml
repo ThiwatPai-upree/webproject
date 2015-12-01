@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout_Web.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    
+</script>
+@using (Html.BeginForm("Register", "Web", FormMethod.Post))
+{
+    <div class="box_all_web">
+        <div class="box_register">
+            <div class="topic_login">LOGIN INFORMATION</div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">Username</div>
+                <input class="textbox_web" name="username" style="width:315px;" />
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">Password</div>
+                <input id="pass" class="textbox_web" name="password" style="width:315px;" type="password" />
+            </div>
+            @*<div class="boxForm_register" style="margin-left:360px;">
+                <div class="topic_nameForm">Confirm-password</div>
+                <input id="c_pass" class="textbox_web" name="c_password" style="width:315px;" type="password" />
+            </div>*@
+            @************************************************************************************@
+            <div class="topic_login">PERSONAL INFORMATION</div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">First Name</div>
+                <input class="textbox_web" name="fname" style="width:315px;" />
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">Last Name</div>
+                <input class="textbox_web" name="lname" style="width:315px;" />
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">Gender</div>
+                <input class="textbox_web" name="gender" style="width:315px;" />
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">Birthday</div>
+                <input class="textbox_web" name="dob" style="width:315px;" />
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">Phone</div>
+                <input class="textbox_web" name="phone" style="width:315px;" />
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">E-mail</div>
+                <input class="textbox_web" name="email" style="width:315px;" />
+            </div>
+            @************************************************************************************@
+            <div class="topic_login">ADDRESS INFORMATION</div>
+            <div class="boxForm_register" style="width:720px;">
+                <div class="topic_nameForm">Address</div>
+                <textarea class="textbox_web" name="address" style="width:675px; height:auto;"></textarea>
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">State/Province</div>
+                <input class="textbox_web" name="province" style="width:315px;" />
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">District</div>
+                <input class="textbox_web" name="district" style="width:315px;" />
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">Subdistrict</div>
+                <input class="textbox_web" name="subdistrict" style="width:315px;" />
+            </div>
+            <div class="boxForm_register">
+                <div class="topic_nameForm">Zip/Postal Code</div>
+                <input class="textbox_web" name="zcode" style="width:315px;" />
+            </div>
+            <div style="width:910px; float:left; margin-top:30px; overflow:auto; height:auto;">
+                <button id="submit" type="submit" class="button_web">Submit</button>
+            </div>
+        </div>
+    </div>
+}

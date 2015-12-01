@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Web.cshtml"; 
+}
+<div class="box_all_web">
+    <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden; visibility: hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+            <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+        </div>
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+            <div data-p="225.00" style="display: none;">
+                <img data-u="image" src="~/images/33879_1_new_steam_update_now_lets_you_download_games_while_playing_games_full.jpg" />
+            </div>
+            <div data-p="225.00" style="display: none;">
+                <img data-u="image" src="~/images/SteamFamilySharing.jpg" />
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:6px;" data-autocenter="1">
+            <!-- bullet navigator item prototype -->
+            <div data-u="prototype" style="width:16px;height:16px;"></div>
+        </div>
+        <!-- Arrow Navigator -->
+        <span data-u="arrowleft" class="jssora22l" style="top:123px;left:12px;width:40px;height:58px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora22r" style="top:123px;right:12px;width:40px;height:58px;" data-autocenter="2"></span>
+        <a href="http://www.jssor.com" style="display:none">Jssor Slider</a>
+    </div>
+    <script>
+        jssor_1_slider_init();
+    </script>
+
+    <div class="boxAllrowProduct_4_Index" style="margin-top:40px;">
+        <div class="box_layer_10" style="width:915px; padding:0px 22px 0px 18px;">
+            <div class="Topic_product_4_Index">NEW PRODUCT</div>
+            @*<div class="More_product_4_Index">MORE</div>*@
+        </div>@*/Blog/Details?id=@Url.Content(@lastestBlog.id)*@
+        <div class="box_layer_10" style="margin-top:20px; ">
+            @foreach (var item in ViewData["NewProduct"] as List<DatabaseProject2015.Models.Item>)
+            {
+                <div class="boxBorderProduct_List">
+                    <a href="/Web/ProductDetail?id=@Url.Content(@item.ItemID+"") " >
+                        <img class="image_Product_List" src="@Url.Content(@item.ImageProfile)"/>
+                        <div class="name_Product_List">@item.Name</div>
+                        <div class="type_Product_List">@item.Genre</div>
+                        <div class="price_Product_List">@item.Cost</div>
+                    </a>
+                    <div class="AddCart_Product_List" onclick="itemAddToCart(@Url.Content(@item.ItemID+""),'@item.Name')"><i class="fa fa-shopping-cart" style="font-size:15px; float:left; margin-right:5px;" ></i> Add To Cart</div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div class="box_middle_Index"></div>
+
+    <div class="boxAllrowProduct_4_Index" style="margin-top:20px;">
+        <div class="box_layer_10" style="width:915px; padding:0px 22px 0px 18px;">
+            <div class="Topic_product_4_Index"> Best Seller</div>
+            @*<div class="More_product_4_Index">MORE</div>*@
+        </div>
+        <div class="box_layer_10" style="margin-top:20px;">
+            @foreach (var item in ViewData["BestSellerProduct"] as List<DatabaseProject2015.Models.Item>)
+            {
+                <div class="boxBorderProduct_List">
+                    <a href="/Web/ProductDetail?id=@Url.Content(@item.ItemID+"")">
+                        <img class="image_Product_List" src="@Url.Content(@item.ImageProfile)" />
+                        <div class="name_Product_List">@item.Name</div>
+                        <div class="type_Product_List">@item.Genre</div>
+                        <div class="price_Product_List">@item.Cost</div>
+                    </a>
+                    <div class="AddCart_Product_List" onclick="itemAddToCart(@Url.Content(@item.ItemID+""),'@item.Name')"><i class="fa fa-shopping-cart" style="font-size:15px; float:left; margin-right:5px;"></i> Add To Cart</div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,61 @@
+﻿@model DatabaseProject2015.Models.EmailFormModel
+@{
+    ViewBag.Title = "ContactUs";
+}
+
+<style>
+    .textbox_web { 
+
+        width:415px;
+    }
+    .textarea_web {
+        min-width:415px; 
+        max-width:415px; 
+        min-height:40px;
+    }
+</style>
+<div class="box_all_web">
+    <div class="topic_login">Contact Us</div>
+    <div class="box_register">
+        <div style="width:440px; float:left; overflow:auto; height:auto; margin-right:40px;">
+            <div class="topic_text_login">Contact us</div>
+            <div class="detail_textlogin">We are here to answer any questions you may have about our us. Reach out to us and we will respond as soon as we can.</div>
+
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div style="width:440px; float:left; overflow:auto; height:auto; padding:0px 0px 5px 0px;">
+                <div class="topic_text_login">Contact Form</div>
+                <div class="topic_nameForm">Name</div>
+                @Html.TextBoxFor(m => m.FromName, new { @class = "textbox_web" })
+                @Html.ValidationMessageFor(m => m.FromName)
+                @*<input class="textbox_web" style="width:415px;" />*@
+
+                <div class="topic_nameForm">Email Address</div>
+                @Html.TextBoxFor(m => m.FromEmail, new { @class = "textbox_web" })
+                @Html.ValidationMessageFor(m => m.FromEmail)
+                @*<input class="textbox_web" style="width:415px;" />*@
+                <div class="topic_nameForm">Subject</div>
+                @Html.TextBoxFor(m => m.Subject, new { @class = "textbox_web" })
+                @Html.ValidationMessageFor(m => m.Subject)
+                @*<input class="textbox_web" style="width:415px;" />*@
+                <div class="topic_nameForm">Message</div>
+                @Html.TextAreaFor(m => m.Message, new { @class = "textbox_web textarea_web" })
+                @Html.ValidationMessageFor(m => m.Message)
+                @*<textarea class="textbox_web" style="min-width:415px; max-width:415px; min-height:40px"></textarea>*@
+
+            </div>
+            <div style="width:100%; float:left; margin-top:30px;">
+                <div style="width:440px; float:left; overflow:auto; height:auto; margin-right:40px;">
+                    <div>@*<a href="/Web/Register" class="button_web">Create an Account</a>*@</div>
+                </div>
+                <div style="width:440px; float:right; overflow:auto; height:auto;">
+                    <button class="button_web" type="submit">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

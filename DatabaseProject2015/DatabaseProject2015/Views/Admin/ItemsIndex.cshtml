@@ -1,0 +1,209 @@
+﻿@model IEnumerable<DatabaseProject2015.Models.Item>
+
+@{
+    Layout = null;
+}
+<script>
+    //function searchbyName() {
+    //    alert("222");
+    //    var resultSearch = document.getElementById("searchName").value;
+    //    alert(resultSearch);
+
+    //    location.href = "/Admin/ItemsIndexSearch?type=1&search=" + resultSearch;
+    //}
+</script>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <title>ItemsIndex</title>
+    <style>
+        .table {
+            margin: 10px 0px 40px 0px;
+        }
+
+        .control-label {
+            line-height: 35px;
+            text-align: right;
+        }
+
+        .row {
+            margin-left: 5px;
+        }
+
+        .form {
+            margin-left: -20px;
+        }
+        option {
+            text-align: center;
+        }
+    </style>
+    <script>
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Game's House</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="@Url.Action("ItemsIndex","Admin")">Products</a></li>
+                        <li><a href="@Url.Action("OrdersIndex","Admin")">Orders</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Products</h3>
+                <a href="@Url.Action("CreateItem","Admin")" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Product</a>
+            </div>
+            <div class="col-md-6" style="margin-left: -10px">
+                <div class="row">
+                    <div class="col-md-4" style="width: 200px; margin-left: 10px">
+                        Filter
+                    </div>
+                    <div class="col-md-3" style="margin-left: -20px; width: 185px">
+                        Price's Range
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 5px">
+                    @* Search Product *@
+                    @using (Html.BeginForm("ItemsIndex", "Admin", FormMethod.Post))
+                    {
+                        <form class="form-inline" role="form">
+                            <div class="col-md-4" style="width: 200px">
+                                <select class="form-control" name="filter" id="types">
+                                    <option value="1">Product ID</option>
+                                    <option value="2">Product Name</option>
+                                    <option value="3">Company Name</option>
+                                    <option value="4">Platfome Name</option>
+                                    <option value="5">Genre Name</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" style="margin-left: -20px; width: 185px"> 
+                                <select name="price" class="form-control">
+                                    <option selected="selected" value="0">Select All</option>
+                                    <option value="1">0 - 499</option>
+                                    <option value="2">500 - 999</option>
+                                    <option value="3">1000 - 1499</option>
+                                    <option value="4">1500 - Above</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4" style="margin-left: -20px">
+                                <input type="text" class="form-control" name="search" placeholder="Search..." />
+                            </div>
+                            <div class="col-md-1" style="margin-left: -20px">
+                                <button style="height: 34px" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </form>
+                    }
+                </div>
+                <div class="row">
+                    @using (Html.BeginForm("ItemsIndex", "Admin"))
+                    {
+
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CompanyName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Genre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Platform)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cost)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SellingPrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quantity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Rating)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateModified)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @{ Int64 counter = 1;}
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @counter
+                                @{ counter++;}
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompanyName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Genre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Platform)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cost)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SellingPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Rating)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateModified)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Update", "EditItem", new { id = item.ItemID }) |
+                                @Html.ActionLink("Details", "ItemDetails", new { id = item.ItemID })
+                            </td>
+                        </tr>
+                                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

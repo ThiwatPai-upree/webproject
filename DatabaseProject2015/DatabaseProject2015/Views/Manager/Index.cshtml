@@ -1,0 +1,144 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href="~/Content/Manager.css" rel="stylesheet" />
+    <link href="~/Content/Web.css" rel="stylesheet" />
+    <script src="~/Scripts/prefixfree.min.js"></script>
+    <script src="~/Scripts/ManagerJs/index.js"></script>
+
+</head>
+<body>
+    <div class="container-fulid" style="width:100%">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row" align="center">
+                    
+                        <h1>Monthly Income<br /><br /></h1>
+                        <section>
+                            <div>
+                                <div id="chart">
+                                    <ul id="numbers">
+                                        <li><span>100%</span></li>
+                                        <li><span>90%</span></li>
+                                        <li><span>80%</span></li>
+                                        <li><span>70%</span></li>
+                                        <li><span>60%</span></li>
+                                        <li><span>50%</span></li>
+                                        <li><span>40%</span></li>
+                                        <li><span>30%</span></li>
+                                        <li><span>20%</span></li>
+                                        <li><span>10%</span></li>
+                                        <li><span>0%</span></li>
+                                    </ul>
+
+                                    <ul id="bars">
+                                        <li><div data-percentage="56" class="bar"></div><span>Option 1</span></li>
+                                        <li><div data-percentage="33" class="bar"></div><span>Option 2</span></li>
+                                        <li><div data-percentage="54" class="bar"></div><span>Option 3</span></li>
+                                        <li><div data-percentage="94" class="bar"></div><span>Option 4</span></li>
+                                        <li><div data-percentage="44" class="bar"></div><span>Option 5</span></li>
+                                        <li>
+                                            <div data-percentage="23" class="bar"></div><span>Option 6</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </section>
+                        <br><br><br>
+                    
+                </div>
+                
+                <div class="row" align="center">
+
+                    <h1>Customer Portion<br /><br /></h1>
+
+                    <section>
+                        <div class="pieID pie">
+
+                        </div>
+                        <ul class="pieID legend">
+                            <li>
+                                <em>Humans</em>
+                                <span>718</span>
+                            </li>
+                            <li>
+                                <em>Dogs</em>
+                                <span>531</span>
+                            </li>
+                            <li>
+                                <em>Cats</em>
+                                <span>868</span>
+                            </li>
+                            <li>
+                                <em>Slugs</em>
+                                <span>344</span>
+                            </li>
+                            <li>
+                                <em>Aliens</em>
+                                <span>1145</span>
+                            </li>
+                        </ul>
+                    </section>
+                    <br><br>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div style="margin-left:20px">
+                    <h1>
+                        Best Sell
+                    </h1>
+                </div>
+                @foreach (var item in ViewData["NewProduct"] as List<DatabaseProject2015.Models.Item>)
+                {
+                <div class="boxBorderProduct_List" style="width: 230px; margin-right:5px">
+                    <a href="">
+                        <img class="image_Product_List" src="@Url.Content(@item.ImageProfile)" />
+                        <div class="name_Product_List">@item.Name</div>
+                    </a>
+                </div>
+                }
+            </div>
+        </div>
+        <div class="container">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#F">Favorite type by age</a></li>
+                <li><a data-toggle="tab" href="#S">Sales portion by company</a></li>
+                <li><a data-toggle="tab" href="#D">Delivery Status</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="F" class="tab-pane fade in active">
+                    <h3>Favorite type by age</h3>
+                    <p>Favorite type by age</p>
+                </div>
+                <div id="S" class="tab-pane fade">
+                    <h3>Sales portion by company</h3>
+                    <p>Sales portion by company</p>
+                </div>
+                <div id="D" class="tab-pane fade">
+                    <h3>Delivery Status</h3>
+                    <p>Delivery Status</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script src="~/Scripts/index.js"></script>
+</body>
+</html>
